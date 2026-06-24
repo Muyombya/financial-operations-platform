@@ -78,3 +78,78 @@ CREATE TABLE providers (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+-- =====================================
+-- TILL SESSIONS
+-- =====================================
+
+CREATE TABLE till_sessions (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+    business_date DATE NOT NULL,
+
+    branch_id UUID NOT NULL REFERENCES branches(id),
+
+    till_id UUID NOT NULL REFERENCES tills(id),
+
+    opened_by UUID NOT NULL REFERENCES users(id),
+
+    opened_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    closed_by UUID REFERENCES users(id),
+
+    closed_at TIMESTAMP,
+
+    status VARCHAR(20) NOT NULL CHECK (
+        status IN (
+            'PENDING',
+            'OPEN',
+            'CLOSING',
+            'CLOSED'
+        )
+    ),
+
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    UNIQUE (business_date, till_id)
+);
+-- =====================================
+-- OPENING POSITIONS
+-- =====================================
+
+CREATE TABLE opening_positions (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+    session_id UUID NOT NULL REFERENCES till_sessions(id),
+
+    provider_id UUID NOT NULL REFERENCES providers(id),
+
+    opening_balance NUMERIC(18,2) NOT NULL DEFAULT 0,
+
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    UNIQUE (
+        session_id,
+        provider_id
+    )
+);
+-- =====================================
+-- POSITION SNAPSHOTS
+-- =====================================
+
+CREATE TABLE position_snapshots (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+    till_id UUID NOT NULL REFERENCES tills(id),
+
+    provider_id UUID NOT NULL REFERENCES providers(id),
+
+    current_balance NUMERIC(18,2) NOT NULL DEFAULT 0,
+
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    UNIQUE (
+        till_id,
+        provider_id
+    )
+);
