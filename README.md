@@ -1,42 +1,41 @@
-# financial-operations-platform
-A cloub based mobile money and agency banking system that tracks the movement of liquidity across Tills, Branches, Providers and Cash positions in near real time.
+# Project Atlas — Organization Engine
 
-- Mobile Money Operations
-- Agency Banking Operations
-- Till Management
-- Branch Management
-- Liquidity Management
-- Reconciliation
-- Position Tracking
+This package adds the first business logic layer to the Project Atlas backend.
 
-## Branches
+## Endpoints
 
-- Lubowa
-- Kitende
-- Naalya Lower
-- Naalya Upper
+### Companies
 
-## Technology Stack
+- `GET /api/v1/companies`
+- `POST /api/v1/companies`
+- `GET /api/v1/companies/:companyId`
 
-### Frontend
-- React
-- Vite
-- PWA
+### Branches
 
-### Backend
-- Node.js
-- Express
+- `GET /api/v1/companies/:companyId/branches`
+- `POST /api/v1/companies/:companyId/branches`
 
-### Database
-- PostgreSQL
+## Example: Create Company
 
-### Deployment
-- Vercel
-- Render
+```json
+{
+  "name": "GadgetShop Uganda",
+  "code": "GADGETSHOP",
+  "country": "Uganda",
+  "currencyCode": "UGX",
+  "timezone": "Africa/Kampala"
+}
+```
 
-## Status
+## Example: Create Branch
 
-Business Analysis Complete
+```json
+{
+  "name": "Lubowa",
+  "code": "LUBOWA",
+  "location": "Lubowa"
+}
+```
 
-Current Phase:
-Database Design & Backend Development
+The service layer uses parameterized PostgreSQL queries and the database
+constraints remain authoritative for uniqueness and relationships.
