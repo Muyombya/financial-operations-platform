@@ -18,6 +18,7 @@ import financialPositionAssessmentRoutes from "./routes/financialPositionAssessm
 import tillFloatMovementRoutes from "./routes/tillFloatMovementRoutes.js";
 import tillFinancialPositionRoutes from "./routes/tillFinancialPositionRoutes.js";
 import branchFinancialPositionRoutes from "./routes/branchFinancialPositionRoutes.js";
+import branchMovementControlRoutes from "./routes/branchMovementControlRoutes.js";
 
 
 const app = express();
@@ -50,4 +51,5 @@ app.use("/api/v1", financialPositionAssessmentRoutes);
 app.use("/api/v1", tillFloatMovementRoutes);
 app.use("/api/v1", tillFinancialPositionRoutes);
 app.use("/api/v1", branchFinancialPositionRoutes);
+app.use("/api/v1", branchMovementControlRoutes);
 export default app;
