@@ -1,0 +1,5 @@
+import { getBranchFinancialPosition, listBranchFinancialPositions, getBranchMovementHistory } from "../services/branchFinancialPositionService.js";
+function sendError(res,error){ if(error.statusCode)return res.status(error.statusCode).json({success:false,error:{code:error.statusCode===404?"NOT_FOUND":"BUSINESS_RULE",message:error.message}}); console.error("Branch financial position operation failed:",error); return res.status(500).json({success:false,error:{code:"INTERNAL_ERROR",message:"The branch financial position could not be retrieved."}}); }
+export async function getBranchFinancialPositionByBranch(req,res){try{return res.json({success:true,data:await getBranchFinancialPosition(req.params.branchId,req.query)});}catch(e){return sendError(res,e);}}
+export async function getAllBranchFinancialPositions(req,res){try{return res.json({success:true,data:await listBranchFinancialPositions(req.query)});}catch(e){return sendError(res,e);}}
+export async function getBranchFinancialMovementHistory(req,res){try{return res.json({success:true,data:await getBranchMovementHistory(req.params.branchId,req.query)});}catch(e){return sendError(res,e);}}

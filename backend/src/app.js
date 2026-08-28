@@ -17,6 +17,8 @@ import businessDateTransactionAnalyticsRoutes from "./routes/businessDateTransac
 import financialPositionAssessmentRoutes from "./routes/financialPositionAssessmentRoutes.js";
 import tillFloatMovementRoutes from "./routes/tillFloatMovementRoutes.js";
 import tillFinancialPositionRoutes from "./routes/tillFinancialPositionRoutes.js";
+import branchFinancialPositionRoutes from "./routes/branchFinancialPositionRoutes.js";
+
 
 const app = express();
 
@@ -47,4 +49,5 @@ app.use("/api/v1", businessDateTransactionAnalyticsRoutes);
 app.use("/api/v1", financialPositionAssessmentRoutes);
 app.use("/api/v1", tillFloatMovementRoutes);
 app.use("/api/v1", tillFinancialPositionRoutes);
+app.use("/api/v1", branchFinancialPositionRoutes);
 export default app;
