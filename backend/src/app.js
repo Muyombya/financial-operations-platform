@@ -19,6 +19,8 @@ import tillFloatMovementRoutes from "./routes/tillFloatMovementRoutes.js";
 import tillFinancialPositionRoutes from "./routes/tillFinancialPositionRoutes.js";
 import branchFinancialPositionRoutes from "./routes/branchFinancialPositionRoutes.js";
 import branchMovementControlRoutes from "./routes/branchMovementControlRoutes.js";
+import serviceMovementControlRoutes from "./routes/serviceMovementControlRoutes.js";
+import tillToTillMovementRoutes from "./routes/tillToTillMovementRoutes.js";
 
 
 const app = express();
@@ -52,4 +54,6 @@ app.use("/api/v1", tillFloatMovementRoutes);
 app.use("/api/v1", tillFinancialPositionRoutes);
 app.use("/api/v1", branchFinancialPositionRoutes);
 app.use("/api/v1", branchMovementControlRoutes);
+app.use("/api/v1", serviceMovementControlRoutes);
+app.use("/api/v1", tillToTillMovementRoutes);
 export default app;
