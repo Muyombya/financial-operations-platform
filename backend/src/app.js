@@ -21,6 +21,7 @@ import branchFinancialPositionRoutes from "./routes/branchFinancialPositionRoute
 import branchMovementControlRoutes from "./routes/branchMovementControlRoutes.js";
 import serviceMovementControlRoutes from "./routes/serviceMovementControlRoutes.js";
 import tillToTillMovementRoutes from "./routes/tillToTillMovementRoutes.js";
+import tillSessionFinancialLifecycleRoutes from "./routes/tillSessionFinancialLifecycleRoutes.js";
 
 
 const app = express();
@@ -56,4 +57,5 @@ app.use("/api/v1", branchFinancialPositionRoutes);
 app.use("/api/v1", branchMovementControlRoutes);
 app.use("/api/v1", serviceMovementControlRoutes);
 app.use("/api/v1", tillToTillMovementRoutes);
+app.use("/api/v1", tillSessionFinancialLifecycleRoutes);
 export default app;
